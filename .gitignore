@@ -1,0 +1,21 @@
+# ビルド出力
+out/
+
+# TeX 中間ファイル
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.dvi
+*.out
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
