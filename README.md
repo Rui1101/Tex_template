@@ -1,6 +1,6 @@
 # 卒業論文 LaTeX テンプレート
 
-研究室の卒業論文用 LaTeX テンプレートです。XeLaTeX（latexmk）でビルドします。
+研究室の卒業論文と梗概の LaTeX テンプレートです。XeLaTeX（latexmk）でビルドします。
 
 導入方法と使い方は、研究室の Notion「卒論 LaTeX テンプレート 利用ガイド」を見てください。
 
@@ -18,6 +18,7 @@
 | `sample.eps` | 図のサンプル |
 | `.latexmkrc` | ビルド設定（XeLaTeX を使う指定） |
 | `.vscode/settings.json` | VS Code のビルド設定 |
+| `kougai/` | 梗概のテンプレート（`kougai.tex` が本体、`kougai.cls` が体裁） |
 
 使用フォント: TeX Gyre Termes / TeX Gyre Heros / Roboto Mono / IPAex明朝 / IPAexゴシック
 
@@ -34,5 +35,6 @@
 - `thesis.cls` Ver.1.00（2026/01/09）
 - 使用フォント: TeX Gyre Termes / TeX Gyre Heros / Roboto Mono / IPAex明朝 / IPAexゴシック
 - XeLaTeX（latexmk）でビルド。`.latexmkrc` と `.vscode/settings.json` を同梱し、VS Code + LaTeX Workshop でそのままビルドできる
-- ビルド後に `out/` の中間ファイルを自動で削除（`thesis.pdf` と `thesis.synctex.gz` は残す）
-- `thesis.tex` と `shaji.tex` の個人情報は「ここに○○」にしてある
+- ビルド後に `out/` の中間ファイルを自動で削除（PDF と `.synctex.gz` は残す）
+- 梗概のテンプレート（`kougai/`）を同梱
+- `thesis.tex`・`shaji.tex`・`kougai/kougai.tex` の個人情報は「ここに○○」にしてある
