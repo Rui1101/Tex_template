@@ -1,6 +1,5 @@
 # ビルド出力
-/out/*
-!/out/thesis.pdf
+out/
 
 # TeX 中間ファイル
 *.aux

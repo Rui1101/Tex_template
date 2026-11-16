@@ -38,7 +38,6 @@
   - 表紙の学籍番号・氏名欄の位置を調整
 - `thesis.tex`: 謝辞を `\prefacechapter{謝辞}` に変更、参考文献の前の手動の目次追加を削除
 - `.vscode/settings.json`: ビルド後に `out/` の中間ファイルを自動で削除する設定を追加
-- `.gitignore`: `out/thesis.pdf` を GitHub に保存する対象に変更
 
 取り込み方:
 
