@@ -9,5 +9,16 @@
             "command": "latexmk",
             "args": ["-outdir=%OUTDIR%", "%DOC%"]
         }
+    ],
+
+    // ビルドが終わったら out/ の中間ファイルを自動で削除する
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    // out/ のようなサブフォルダの中も削除の対象にする
+    "latex-workshop.latex.clean.subfolder.enabled": true,
+    // 削除するファイル（thesis.pdf と、PDF⇔ソースのジャンプに使う *.synctex.gz は残す）
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.ilg",
+        "*.lof", "*.lot", "*.toc", "*.out", "*.log",
+        "*.fls", "*.fdb_latexmk", "*.xdv", "*.dvi"
     ]
 }
