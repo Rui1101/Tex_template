@@ -1,0 +1,69 @@
+# SVG を EPS に自動変換する
+#   .svg を push すると、同じ場所に同じ名前の .eps を作ってコミットする。
+#   Actions タブの「Run workflow」から手動で実行すると、全 SVG を変換し直す。
+name: SVG to EPS
+
+on:
+  push:
+    paths:
+      - '**.svg'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: svg2eps-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Inkscape and fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends inkscape fonts-noto-cjk
+
+      - name: List SVG files to convert
+        env:
+          BEFORE: ${{ github.event.before }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          list="$RUNNER_TEMP/svgs"
+          if [ "$EVENT" = "workflow_dispatch" ] || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            # 手動実行・新しいブランチ: 全 SVG
+            git ls-files -z -- '*.svg' > "$list"
+          else
+            # 通常の push: 追加・変更された SVG だけ
+            git diff -z --name-only --diff-filter=AMR "$BEFORE" "$GITHUB_SHA" -- '*.svg' > "$list"
+          fi
+          echo "変換対象:"
+          tr '\0' '\n' < "$list"
+
+      - name: Convert SVG to EPS
+        run: |
+          while IFS= read -r -d '' svg; do
+            eps="${svg%.*}.eps"
+            echo "::group::$svg -> $eps"
+            inkscape "$svg" --export-type=eps --export-text-to-path --export-filename="$eps"
+            git add -- "$eps"
+            echo "::endgroup::"
+          done < "$RUNNER_TEMP/svgs"
+
+      - name: Commit and push EPS
+        run: |
+          if git diff --cached --quiet; then
+            echo "コミットする EPS はありません。"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -m "SVG から EPS を自動生成"
+          # 変換中に別の push があっても取り込んでから push する
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
