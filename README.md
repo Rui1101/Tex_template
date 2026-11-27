@@ -15,7 +15,7 @@
 | `chapter1.tex` 〜 `chapter5.tex` | 各章の本文 |
 | `shaji.tex` | 謝辞 |
 | `thesis.cls` | 体裁を決めるクラスファイル（基本的に編集不要） |
-| `sample.eps` | 図のサンプル |
+| `Figures/sample.eps` | 図のサンプル |
 | `.latexmkrc` | ビルド設定（XeLaTeX を使う指定） |
 | `.vscode/settings.json` | VS Code のビルド設定 |
 | `kougai/` | 梗概のテンプレート（`kougai.tex` が本体、`kougai.cls` が体裁） |
