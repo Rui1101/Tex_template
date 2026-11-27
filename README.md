@@ -38,6 +38,25 @@
 更新があったときは、各バージョンの「取り込み方」を見てください。
 自分が使っているバージョンは、リポジトリを作った日と下の日付を比べて確認できます。
 
+### v1.2（2026-11-27）
+
+- 参考文献を BibTeX で作れるようにした（PR #2、TIidaka さんより）
+  - 文献は卒論と梗概で共通の `references.bib` に書き、本文では `\cite{引用キー}` で引用する
+  - 番号は本文で最初に引用した順に付く（文献スタイル `junsrt.bst` を同梱）
+  - `thesis.tex`・`kougai/kougai.tex` の手書きの参考文献欄（`thebibliography`）を `\bibliography{references}` に置き換え
+  - `.latexmkrc`・`kougai/.latexmkrc` に `$bibtex_fudge = 0;` を追加（梗概から上のフォルダの `references.bib` を読むため）
+
+取り込み方:
+
+1. `references.bib` と `junsrt.bst` を自分のリポジトリの直下にコピーする。
+2. `.latexmkrc` と `kougai/.latexmkrc` に `$bibtex_fudge = 0;` の1行を足す。
+3. `thesis.tex` の `\begin{thebibliography}` 〜 `\end{thebibliography}` を、次の2行に置き換える（梗概は `../junsrt` と `../references`）。
+   ```latex
+   \bibliographystyle{junsrt}
+   \bibliography{references}
+   ```
+4. 手書きで書いていた文献を `references.bib` に移し、本文の `\cite{...}` のキーを合わせる。
+
 ### v1.1（2026-11-27）
 
 - 図のサンプルを `Figures/` フォルダに移動（卒論は `Figures/sample.eps`、梗概は `kougai/Figures/sample.eps`）。`chapter2.tex`・`chapter3.tex`・`kougai.tex` の `\includegraphics` も `Figures/sample.eps` に変更
