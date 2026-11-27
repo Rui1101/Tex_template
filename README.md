@@ -32,12 +32,7 @@
 
 - 図のサンプルを `Figures/` フォルダに移動（卒論は `Figures/sample.eps`、梗概は `kougai/Figures/sample.eps`）。`chapter2.tex`・`chapter3.tex`・`kougai.tex` の `\includegraphics` も `Figures/sample.eps` に変更
 - 表紙の年度を「令和8年度」、謝辞の日付を「2027年 1月」に変更（2026年度の卒論向け）
-
-取り込み方:
-
-- v1.0 で書き始めた人は、取り込まなくても問題ありません。
 - 図をフォルダにまとめたい場合は、リポジトリに `Figures` フォルダを作って `.eps` を移し、`\includegraphics{Figures/ファイル名.eps}` のようにフォルダ名を付けます。
-- 年度は `thesis.tex` の `\setyearstr{...}`、日付は `shaji.tex` の最後で変えられます。
 
 ### v1.0（2026-11-16）
 
