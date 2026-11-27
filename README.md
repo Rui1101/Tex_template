@@ -2,7 +2,7 @@
 
 研究室の卒業論文と梗概の LaTeX テンプレートです。XeLaTeX（latexmk）でビルドします。
 
-導入方法と使い方は、研究室の Notion「卒論 LaTeX テンプレート 利用ガイド」を見てください。
+導入方法と使い方は、研究室の Notion「卒論 LaTeX テンプレート ガイド」を見てください。
 
 > **注意**: このリポジトリを直接クローンして書き始めないでください。
 > 「Use this template」で自分専用のリポジトリを作ってから使います。
@@ -18,7 +18,7 @@
 | `Figures/sample.eps` | 図のサンプル |
 | `.latexmkrc` | ビルド設定（XeLaTeX を使う指定） |
 | `.vscode/settings.json` | VS Code のビルド設定 |
-| `kougai/` | 梗概のテンプレート（`kougai.tex` が本体、`kougai.cls` が体裁） |
+| `kougai/` | 梗概のテンプレート（`kougai.tex` が本体、`kougai.cls` が体裁、図は `kougai/Figures/`） |
 
 使用フォント: TeX Gyre Termes / TeX Gyre Heros / Roboto Mono / IPAex明朝 / IPAexゴシック
 
@@ -27,6 +27,17 @@
 「Use this template」で作ったリポジトリには、テンプレート側の更新は自動では反映されません。
 更新があったときは、各バージョンの「取り込み方」を見てください。
 自分が使っているバージョンは、リポジトリを作った日と下の日付を比べて確認できます。
+
+### v1.1（2026-11-27）
+
+- 図のサンプルを `Figures/` フォルダに移動（卒論は `Figures/sample.eps`、梗概は `kougai/Figures/sample.eps`）。`chapter2.tex`・`chapter3.tex`・`kougai.tex` の `\includegraphics` も `Figures/sample.eps` に変更
+- 表紙の年度を「令和8年度」、謝辞の日付を「2027年 1月」に変更（2026年度の卒論向け）
+
+取り込み方:
+
+- v1.0 で書き始めた人は、取り込まなくても問題ありません。
+- 図をフォルダにまとめたい場合は、リポジトリに `Figures` フォルダを作って `.eps` を移し、`\includegraphics{Figures/ファイル名.eps}` のようにフォルダ名を付けます。
+- 年度は `thesis.tex` の `\setyearstr{...}`、日付は `shaji.tex` の最後で変えられます。
 
 ### v1.0（2026-11-16）
 
