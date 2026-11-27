@@ -14,6 +14,8 @@
 | `thesis.tex` | メインファイル。タイトル・氏名などの設定と、章の読み込み |
 | `chapter1.tex` 〜 `chapter5.tex` | 各章の本文 |
 | `shaji.tex` | 謝辞 |
+| `references.bib` | 卒論と梗概で共用する文献データ（和文・英文の記入例付き） |
+| `junsrt.bst` | 本文で最初に引用した順に番号を付ける和文対応の文献スタイル |
 | `thesis.cls` | 体裁を決めるクラスファイル（基本的に編集不要） |
 | `Figures/sample.eps` | 図のサンプル |
 | `.latexmkrc` | ビルド設定（XeLaTeX を使う指定） |
@@ -21,6 +23,14 @@
 | `kougai/` | 梗概のテンプレート（`kougai.tex` が本体、`kougai.cls` が体裁、図は `kougai/Figures/`） |
 
 使用フォント: TeX Gyre Termes / TeX Gyre Heros / Roboto Mono / IPAex明朝 / IPAexゴシック
+
+## 参考文献の追加
+
+1. `references.bib` の記入例をコピーし、文献ごとに一意の引用キーと書誌情報を記入します。
+2. 引用したい箇所に `\cite{yamada2025}` のように書きます。同じキーを再び引用すると、同じ番号が表示されます。
+3. リポジトリ直下で卒論は `latexmk thesis.tex`、梗概は `latexmk -cd kougai/kougai.tex` でビルドします。
+
+各文書の参考文献欄には、その文書で引用した文献が初出順に並びます。`.bib` 内の並べ替えや手作業での採番は不要です。
 
 ## 更新履歴
 
